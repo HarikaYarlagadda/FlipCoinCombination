@@ -1,17 +1,36 @@
-#! /bin/bash -x
-tailcount=0
-headcount=0
-for (( i=0 ; i<100 ; i++ ))
-do
-coin=$(( RANDOM%2 ))
-if (( $coin == 0 ))
+#!/bin/bash
+echo "Flip the Coin"
+coin=$(( $RANDOM%2 ))
+
+if [ $coin -eq 0 ]
 then
-	echo "tails"
-	(( tailcount++ ))
+	echo "Heads win"
 else
-	echo "heads"
-	(( headcount++ ))
+	echo "Tails win"
 fi
+
+declare -A coin
+headscount=0
+tailscount=0
+a=0
+
+Singlet ()
+{
+	if [ $1 -eq 0 ]
+	then
+		echo "Heads"
+		((headcount++))
+	else
+		echo "Tails"
+		((tailcount++))
+	fi
+}
+
+while [ $a -le 10 ]
+do
+	FlipCoin=$(( $RANDOM%2 ))
+	Singlet $FlipCoin
+	((a++))
 done
 echo "no of times heads came $headcount"
 echo "no of times tails came $tailcount"
