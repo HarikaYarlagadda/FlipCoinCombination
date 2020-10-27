@@ -15,5 +15,7 @@ fi
 done
 echo "no of times heads came $headcount"
 echo "no of times tails came $tailcount"
-headspercent=$(($headcount/1))
-tailspercent=$(($tailcount/1))
+headspercent=$(( (${headcount}*100)/10 ))
+tailspercent=$(( (${tailcount}*100)/10 ))
+echo "percentage of heads" $headspercent
+echo "percentage of tails" $tailspercent
